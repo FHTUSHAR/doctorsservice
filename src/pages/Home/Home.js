@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
 import './Home.css'
 import { AuthContext } from '../../Context/AuthProvider';
-
-import bg2 from '../../images/bg2.webp'
 import Banner from './Banner/Banner';
+import Services from '../Services/Services';
 
 const Home = () => {
     const { user } = useContext(AuthContext)
     return (
         <div>
             <Banner></Banner>
+            <Services></Services>
         </div>
     );
 };
