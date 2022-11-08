@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import img1 from '../../images/login1.webp'
 
 const Login = () => {
     const { user, loginUser, googleSignIn } = useContext(AuthContext)
+    const [error, setError] = useState('')
     const navigate = useNavigate()
 
     const handleSubmit = (event) => {
@@ -17,18 +19,23 @@ const Login = () => {
         loginUser(email, password)
             .then(result => {
                 const user = result.user;
+                form.reset()
+                setError('')
                 navigate('/')
             })
             .catch(error => {
+                setError(error.message)
                 console.error(error)
             })
     }
     const googleBtn = () => {
         googleSignIn()
             .then(result => {
+                setError('')
                 const user = result.user;
             })
             .catch(err => {
+                setError(err.message)
                 console.error(err)
             })
     }
@@ -36,7 +43,7 @@ const Login = () => {
 
         <div className="card lg:card-side  p-4">
             <div className='w-1/2'>
-                <figure ><img className='w-3/4 rounded-lg' src="https://placeimg.com/400/400/arch" alt="Album" /></figure>
+                <figure ><img className='w-3/4 rounded-lg' src={img1} alt="Album" /></figure>
             </div>
             <div className="card-body w-1/2 border shadow-xl rounded-lg p-4 text-center">
                 <h2 className='text-2xl font-bold text-blue-600'>Login</h2>
@@ -47,6 +54,7 @@ const Login = () => {
                 </form>
                 <div><button onClick={googleBtn} className="btn btn-outline btn-success w-1/3 justify-between"> <FaGoogle className=' border-green-600 text-2xl rounded-full' />Google <span></span></button></div>
                 <p>Don't have an account.Please <Link to={'/register'} className='text-blue-700'>Register</Link></p>
+                <p>{error}</p>
             </div>
 
         </div>

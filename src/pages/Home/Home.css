@@ -1,0 +1,10 @@
+.banner {
+    background-image: url('../../images/bg.jpg');
+    height: 600px;
+
+    /* background-image: linear-gradient(to right, rgba(223, 230, 233, 1.3), rgba(85, 239, 196, 1.0)); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(80%);
+
+}
