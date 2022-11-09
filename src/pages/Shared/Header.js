@@ -56,6 +56,8 @@ const Header = () => {
                     {
                         user?.uid ?
                             <>
+                                <li><Link>My Review</Link></li>
+                                <li><Link>Add Service</Link></li>
                                 <li><button onClick={logOutBtn}>Log Out</button></li>
 
                             </>
