@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Service from '../Service/Service';
+import { Helmet } from "react-helmet";
 
 const AllService = () => {
     const [services, setServices] = useState([])
@@ -10,6 +11,10 @@ const AllService = () => {
     }, [])
     return (
         <div className='mb-8'>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Services</title>
+            </Helmet>
             <h1 className='text-center text-5xl'>Our services</h1>
             <div className='grid lg:grid-cols-3 sm:grid-cols-1'>
 

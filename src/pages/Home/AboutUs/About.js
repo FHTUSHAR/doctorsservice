@@ -2,9 +2,11 @@ import React from 'react';
 import img1 from '../../../images/about3.jpg'
 import img2 from '../../../images/doc1.png'
 
+
 const About = () => {
     return (
         <div className='p-6 h-72 mb-28 block'>
+
             <h2 className='text-center text-3xl font-semibold h-auto'>About Me</h2>
             <div className="card lg:card-side bg-base-100 rounded-none ">
                 <div className="card-body w-1/2 sm:w-full ">
