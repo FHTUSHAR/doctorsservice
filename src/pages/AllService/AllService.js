@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Service from '../Service/Service';
 import { Helmet } from "react-helmet";
+import 'react-photo-view/dist/react-photo-view.css';
 
 const AllService = () => {
     const [services, setServices] = useState([])

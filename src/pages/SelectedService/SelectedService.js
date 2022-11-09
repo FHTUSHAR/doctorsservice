@@ -1,14 +1,13 @@
 import React from 'react';
-import { FaStar } from 'react-icons/fa';
-import { PhotoProvider, PhotoView } from 'react-photo-view';
-import { Link } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import 'react-photo-view/dist/react-photo-view.css';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
-const Service = ({ service }) => {
-    const { title, img, price, rating, details, _id } = service
+const SelectedService = () => {
+    const selectedService = useLoaderData();
+    const { title, img, price, rating, _id, details } = selectedService;
     return (
-        <div className=''>
-
+        <div className='flex justify-center'>
             <div className="card w-96 bg-base-100 shadow-xl mt-5">
                 <figure className="px-10 pt-10">
                     <PhotoProvider>
@@ -26,13 +25,11 @@ const Service = ({ service }) => {
                         <p className='font-bold'> Rating :{rating}stars</p>
                         <p className='font-bold'>Price :${price}</p>
                     </div>
-                    <div className="card-actions">
-                        <button className="btn btn-primary px-5"><Link to={`/services/${_id}`}>See Details</Link></button>
-                    </div>
+
                 </div>
             </div>
         </div>
     );
 };
 
-export default Service;
+export default SelectedService;
