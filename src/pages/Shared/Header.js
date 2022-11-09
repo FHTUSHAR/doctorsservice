@@ -39,7 +39,7 @@ const Header = () => {
                 <ul className="menu menu-horizontal p-0 font-semibold">
                     <li><Link to={'/home'}>Home</Link></li>
                     <li >
-                        <Link>
+                        <Link to={'/services'}>
                             Services
                         </Link>
 

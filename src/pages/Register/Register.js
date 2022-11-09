@@ -20,6 +20,7 @@ const Register = () => {
                 const user = result.user;
                 handleUpdateUserProfile(name, img)
                 navigate('/')
+                form.reset()
                 setError('')
             })
             .catch(error => {
