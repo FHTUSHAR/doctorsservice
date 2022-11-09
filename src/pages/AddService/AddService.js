@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 const AddService = () => {
     const handleSubmit = (event) => {
@@ -39,7 +40,10 @@ const AddService = () => {
     }
     return (
         <div className="card lg:card-side  p-4">
-
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title> Add Services</title>
+            </Helmet>
             <div className="card-body w-1/2 border shadow-xl rounded-lg p-4 text-center">
                 <h2 className='text-2xl font-bold text-blue-600'>Add Service</h2>
                 <form className='p-4' onSubmit={handleSubmit}>
@@ -47,7 +51,7 @@ const AddService = () => {
                     <div><input type="text" name='img' placeholder="Type imgURL" className="input input-bordered input-accent w-3/4 mb-4  " /></div>
                     <div> <input type="text" name='price' placeholder="Type price" className="input input-bordered input-accent w-3/4 mb-4 " /></div>
                     <div> <input type="text" name='rating' placeholder="Ratings" className="input input-bordered input-accent w-3/4 mb-4 " /></div>
-                    <div> <input type="text" name='details' placeholder="Details" className="input input-bordered input-accent w-3/4 mb-4 " /></div>
+                    <div> <input type="text" name='details' placeholder="Details" className="input py-10 input-bordered input-accent w-3/4 mb-4 " /></div>
                     <div><input type="submit" placeholder="Type password" className="btn btn-primary px-9 " /></div>
                 </form>
 
