@@ -8,12 +8,7 @@ const Update = () => {
     const handleUpdate = (event) => {
         event.preventDefault();
         const review = event.target.review.value;
-        console.log(reviews)
-        console.log(review)
         reviews.review = review;
-        console.log(reviews)
-        // setReviews(review)
-        console.log(update.service_id)
         fetch(`http://localhost:5000/myreview/${update.service_id}`, {
             method: 'PATCH',
             headers: {
