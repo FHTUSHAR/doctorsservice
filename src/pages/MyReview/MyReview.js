@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaUserEdit } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyReview = () => {
     const { user, logOut } = useContext(AuthContext)
     const [reviews, setReviews] = useState([])
     const myreviews = useLoaderData()
+    const notify = () => toast("Successfully Deleted");
     useEffect(() => {
         fetch(`http://localhost:5000/myreview?email=${user?.email}`, {
             headers: {
@@ -26,21 +29,25 @@ const MyReview = () => {
             })
     }, [user?.email])
     const handleDelete = (id) => {
+        console.log(id)
         const proceed = window.confirm('Are you sure to cancel this item')
         if (proceed) {
-            // fetch(`https://gineus-car-server.vercel.app/orders/${id}`, {
-            //     method: 'DELETE',
-            // })
-            //     .then(res => res.json())
-            //     .then(data => {
-            //         if (data.deletedCount > 0) {
-            //             alert("Successfully deleted")
-            //             const rest = review.filter(rev => rev._id !== id);
-            //             setReview(rest)
-            //         }
-            //         console.log(data)
-            //     })
+            fetch(`http://localhost:5000/myreview/${id}`, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        notify()
+                        const rest = reviews.filter(rev => rev.service_id !== id);
+                        setReviews(rest)
+                    }
+                    console.log(data)
+                })
         }
+    }
+    const handleUpdate = (id) => {
+
     }
 
 
@@ -51,6 +58,7 @@ const MyReview = () => {
                 <meta charSet="utf-8" />
                 <title>My Review</title>
             </Helmet>
+            <ToastContainer />
             <h2 className='text-3xl font-bold'>All review</h2>
             {
                 reviews.map(review => <div key={review._id}>
@@ -64,6 +72,7 @@ const MyReview = () => {
                                     <th>title</th>
                                     <th>Review</th>
                                     <th>Delete</th>
+                                    <th>Edit</th>
 
                                 </tr>
                             </thead>
@@ -85,6 +94,7 @@ const MyReview = () => {
 
                                     <td>{review.review}</td>
                                     <td><button onClick={() => handleDelete(review.service_id)}><FaTrash /></button></td>
+                                    <td><button onClick={() => handleUpdate(review.service_id)}><FaUserEdit /></button></td>
 
                                 </tr>
                             </tbody>

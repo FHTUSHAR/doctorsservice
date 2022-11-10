@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 import AllReview from '../AllReview/AllReview';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Review = ({ selectedService }) => {
     const { user } = useContext(AuthContext)
     const { title, _id } = selectedService;
+    const notify = () => toast("Successfully Inserted!");
     const handleSubmit = (event) => {
         event.preventDefault()
         const details = event.target.details.value;
@@ -27,7 +30,7 @@ const Review = ({ selectedService }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    alert('Sucessfully inserted')
+                    notify()
                     event.target.reset()
                 }
                 console.log(data)
@@ -38,6 +41,7 @@ const Review = ({ selectedService }) => {
     return (
 
         <div>
+            <ToastContainer />
             {
                 user?.uid ? <>
                     <div>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddService = () => {
     const handleSubmit = (event) => {
@@ -10,6 +12,7 @@ const AddService = () => {
         const price = form.price.value;
         const rating = form.rating.value;
         const details = form.details.value;
+        const notify = () => toast("Sucessfully added !");
         const addService = {
             title: title,
             img: img,
@@ -28,7 +31,7 @@ const AddService = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    alert('Sucessfully inserted')
+                    notify()
                     form.reset()
                 }
                 console.log(data)
