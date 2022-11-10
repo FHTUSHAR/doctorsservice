@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 
 const Update = () => {
     const update = useLoaderData()
     const navigate = useNavigate()
     const [reviews, setReviews] = useState(update)
+    const notify = () => toast("Sucessfully added !");
     const handleUpdate = (event) => {
         event.preventDefault();
         const review = event.target.review.value;
@@ -19,6 +22,7 @@ const Update = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                notify()
                 navigate('/myreview')
             })
             .catch(err => console.error(err))
