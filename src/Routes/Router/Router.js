@@ -2,10 +2,13 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layout/Main";
 import AddService from "../../pages/AddService/AddService";
 import AllService from "../../pages/AllService/AllService";
+import Blog from "../../pages/Blog/Blog";
 import Home from "../../pages/Home/Home";
 import Login from "../../pages/Login/Login";
+import MyReview from "../../pages/MyReview/MyReview";
 import Register from "../../pages/Register/Register";
 import SelectedService from "../../pages/SelectedService/SelectedService";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -41,8 +44,23 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/addservices',
-                element: <AddService></AddService>
+                element: <PrivateRoute><AddService></AddService></PrivateRoute>
+            },
+            {
+                path: '/myreview/',
+                element: <PrivateRoute><MyReview ></MyReview></PrivateRoute>
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             },
         ]
     },
+    {
+        path: '/*',
+        element: <div className="text-center">
+            <h2 className="text-3xl"> Path Not Found</h2>
+            <h1 className="text-5xl font-bold text-red-500">404</h1>
+        </div>
+    }
 ]);

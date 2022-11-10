@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Header = () => {
     const { logOut, user } = useContext(AuthContext)
-    console.log(user)
+    const navigate = useNavigate()
+    let location = useLocation()
+    let from = location.state?.from?.pathname || "/";
     const logOutBtn = () => {
         logOut()
             .then()
@@ -46,8 +48,20 @@ const Header = () => {
 
                     </li>
                     <li>
-                        <Link>Blog</Link>
+                        <Link to={'/blog'}>Blog</Link>
                     </li>
+                    {
+                        user?.uid ?
+                            <>
+                                <li><Link to={`/myreview`}>My Review</Link></li>
+                                <li><Link to={'/addservices'}>Add Service</Link></li>
+
+                            </>
+                            :
+                            <>
+
+                            </>
+                    }
 
 
                 </ul>
@@ -57,8 +71,7 @@ const Header = () => {
                     {
                         user?.uid ?
                             <>
-                                <li><Link>My Review</Link></li>
-                                <li><Link to={'/addservices'}>Add Service</Link></li>
+
                                 <li><button onClick={logOutBtn}>Log Out</button></li>
 
                             </>
@@ -67,6 +80,7 @@ const Header = () => {
                                 <li><Link to={'/login'}>Login</Link></li>
                             </>
                     }
+
                 </ul>
             </div>
         </div>

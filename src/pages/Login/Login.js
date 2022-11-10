@@ -1,27 +1,44 @@
 import React, { useContext, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import img1 from '../../images/login1.webp'
 
 const Login = () => {
-    const { user, loginUser, googleSignIn } = useContext(AuthContext)
+    const { loginUser, googleSignIn } = useContext(AuthContext)
     const [error, setError] = useState('')
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     const handleSubmit = (event) => {
         event.preventDefault()
         const form = event.target;
-
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
         loginUser(email, password)
             .then(result => {
                 const user = result.user;
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        localStorage.setItem('doctorToken', data.token)
+                        navigate(from, { replace: true });
+                    })
+                    .catch(error => console.error(error))
                 form.reset()
                 setError('')
-                navigate('/')
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 setError(error.message)
@@ -31,8 +48,26 @@ const Login = () => {
     const googleBtn = () => {
         googleSignIn()
             .then(result => {
-                setError('')
                 const user = result.user;
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        localStorage.setItem('doctorToken', data.token)
+                        navigate(from, { replace: true });
+                    })
+                    .catch(error => console.error(error))
+                navigate(from, { replace: true });
+                setError('')
             })
             .catch(err => {
                 setError(err.message)

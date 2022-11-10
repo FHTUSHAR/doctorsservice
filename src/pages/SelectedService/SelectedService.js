@@ -32,7 +32,7 @@ const SelectedService = () => {
                 </div>
             </div>
             <div>
-                <Review key={_id} _id={_id}></Review>
+                <Review key={_id} selectedService={selectedService}></Review>
             </div>
         </div>
     );
