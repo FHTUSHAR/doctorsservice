@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { FaTrash, FaUserEdit } from 'react-icons/fa';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MyReview = () => {
     const { user, logOut } = useContext(AuthContext)
+    const navigate = useNavigate()
     const [reviews, setReviews] = useState([])
     const myreviews = useLoaderData()
     const notify = () => toast("Successfully Deleted");
@@ -47,7 +48,7 @@ const MyReview = () => {
         }
     }
     const handleUpdate = (id) => {
-
+        navigate(`/update/${id}`)
     }
 
 
@@ -59,6 +60,7 @@ const MyReview = () => {
                 <title>My Review</title>
             </Helmet>
             <ToastContainer />
+
             <h2 className='text-3xl font-bold'>All review</h2>
             {
                 reviews.map(review => <div key={review._id}>
