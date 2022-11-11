@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import Service from '../Service/Service';
-import { TailSpin } from 'react-loader-spinner'
+
 
 const Services = () => {
     const { loading } = useContext(AuthContext)
@@ -13,20 +13,11 @@ const Services = () => {
     useEffect(() => {
         fetch('https://doctors-services-server.vercel.app/homeServices')
             .then(res => res.json())
-            .then(data => setServices(data))
+            .then(data => {
+                setServices(data)
+            })
     }, [])
-    if (loading) {
-        return <TailSpin
-            height="80"
-            width="80"
-            color="#4fa94d"
-            ariaLabel="tail-spin-loading"
-            radius="1"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-        />
-    }
+
     return (
         <div>
             <div>

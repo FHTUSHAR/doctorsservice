@@ -85,18 +85,21 @@ const Register = () => {
             .then(() => { })
             .catch((e) => { setError(error.message) })
     }
-    if (loading) {
-        return <TailSpin
-            height="80"
-            width="80"
-            color="#4fa94d"
-            ariaLabel="tail-spin-loading"
-            radius="1"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-        />
+    if (!error) {
+        if (loading) {
+            return <TailSpin
+                height="80"
+                width="80"
+                color="#4fa94d"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+            />
+        }
     }
+
 
     return (
         <div className="card lg:card-side  p-4">

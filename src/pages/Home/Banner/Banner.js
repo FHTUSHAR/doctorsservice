@@ -11,7 +11,7 @@ const Banner = () => {
 
             </div>
             <div className=" w-1/2 ">
-                <figure ><img className='object-fill w-2/4 rounded-full mt-60 sm:ml-32 sm:mt-28' src={bg} alt="Album" /></figure>
+                <figure ><img className='object-fill w-2/4 rounded-full mt-60 sm:ml-32 sm:mt-14' src={bg} alt="Album" /></figure>
             </div>
 
         </div>
