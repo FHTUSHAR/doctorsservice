@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
             {
                 path: '/services/:id',
                 loader: ({ params }) => {
-                    return fetch(`http://localhost:5000/services/${params.id}`)
+                    return fetch(`https://doctors-services-server.vercel.app/services/${params.id}`)
                 },
                 element: <SelectedService></SelectedService>
             },
@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
                 path: '/update/:id',
                 element: <Update></Update>,
                 loader: ({ params }) => {
-                    return fetch(`http://localhost:5000/update/${params.id}`)
+                    return fetch(`https://doctors-services-server.vercel.app/update/${params.id}`)
                 }
 
             },

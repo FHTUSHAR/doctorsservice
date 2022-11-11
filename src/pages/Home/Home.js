@@ -5,6 +5,7 @@ import Banner from './Banner/Banner';
 import Services from '../Services/Services';
 import About from './AboutUs/About';
 import { Helmet } from "react-helmet";
+import FAQ from './FAQ/FAQ';
 
 const Home = () => {
     const { user } = useContext(AuthContext)
@@ -17,6 +18,7 @@ const Home = () => {
             <Banner></Banner>
             <Services></Services>
             <About></About>
+            <FAQ></FAQ>
         </div>
     );
 };

@@ -5,17 +5,18 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 
 const Update = () => {
     const update = useLoaderData()
+    console.log('update', update)
     const navigate = useNavigate()
     const [reviews, setReviews] = useState(update)
     const notify = () => toast("Sucessfully added !");
     const handleUpdate = (event) => {
         event.preventDefault();
-        const review = event.target.review.value;
-        reviews.review = review;
-        fetch(`http://localhost:5000/myreview/${update.service_id}`, {
+        const updatereview = event.target.review.value;
+        reviews.review = updatereview;
+        fetch(`https://doctors-services-server.vercel.app/myreview/${update._id}`, {
             method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
             },
             body: JSON.stringify(reviews)
         })
@@ -26,7 +27,7 @@ const Update = () => {
                 navigate('/myreview')
             })
             .catch(err => console.error(err))
-
+        event.target.reset()
     }
     return (
         <div className='flex justify-center w-1/2'>

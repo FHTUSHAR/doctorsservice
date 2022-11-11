@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { FaTrash, FaUserEdit } from 'react-icons/fa';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,7 +14,7 @@ const MyReview = () => {
     const myreviews = useLoaderData()
     const notify = () => toast("Successfully Deleted");
     useEffect(() => {
-        fetch(`http://localhost:5000/myreview?email=${user?.email}`, {
+        fetch(`https://doctors-services-server.vercel.app/myreview?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('doctorToken')}`
             }
@@ -34,21 +34,23 @@ const MyReview = () => {
         console.log(id)
         const proceed = window.confirm('Are you sure to cancel this item')
         if (proceed) {
-            fetch(`http://localhost:5000/myreview/${id}`, {
-                method: 'DELETE',
+            fetch(`https://doctors-services-server.vercel.app/myreview/${id}`, {
+                method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
                         notify()
-                        const rest = reviews.filter(rev => rev.service_id !== id);
+                        const rest = reviews.filter(rev => rev._id !== id);
                         setReviews(rest)
                     }
                     console.log(data)
                 })
         }
     }
+    console.log(reviews)
     const handleUpdate = (id) => {
+        console.log(id)
         navigate(`/update/${id}`)
     }
 
@@ -99,8 +101,8 @@ const MyReview = () => {
                                                 <td>{review.title}</td>
 
                                                 <td>{review.review}</td>
-                                                <td><button onClick={() => handleDelete(review.service_id)}><FaTrash /></button></td>
-                                                <td><button onClick={() => handleUpdate(review.service_id)}><FaUserEdit /></button></td>
+                                                <td><button onClick={() => handleDelete(review._id)}><FaTrash /></button></td>
+                                                <td><Link to={`/update/${review._id}`}><button><FaUserEdit /></button></Link></td>
 
                                             </tr>
                                         </tbody>

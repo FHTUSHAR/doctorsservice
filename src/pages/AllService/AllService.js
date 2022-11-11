@@ -6,7 +6,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 const AllService = () => {
     const [services, setServices] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://doctors-services-server.vercel.app/services')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
@@ -16,8 +16,9 @@ const AllService = () => {
                 <meta charSet="utf-8" />
                 <title>Services</title>
             </Helmet>
-            <h1 className='text-center text-5xl'>Our services</h1>
-            <div className='grid lg:grid-cols-3 sm:grid-cols-1'>
+            <h1 className='text-center font-bold text-4xl my-3'>Our services</h1>
+            <hr />
+            <div className='grid lg:grid-cols-3 sm:grid-cols-1 '>
 
                 {
                     services.map(service => <Service key={service._id} service={service}></Service>)

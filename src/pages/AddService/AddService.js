@@ -21,10 +21,11 @@ const AddService = () => {
             details: details
         }
         console.log(addService)
-        fetch('http://localhost:5000/addservices', {
+        fetch('https://doctors-services-server.vercel.app/addservices', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('doctorToken')}`
             },
             body: JSON.stringify(addService)
         })
@@ -47,6 +48,7 @@ const AddService = () => {
                 <meta charSet="utf-8" />
                 <title> Add Services</title>
             </Helmet>
+            <ToastContainer />
             <div className="card-body w-1/2 border shadow-xl rounded-lg p-4 text-center">
                 <h2 className='text-2xl font-bold text-blue-600'>Add Service</h2>
                 <form className='p-4' onSubmit={handleSubmit}>

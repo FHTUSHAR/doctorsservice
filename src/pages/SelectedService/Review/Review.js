@@ -20,10 +20,10 @@ const Review = ({ selectedService }) => {
             title: title
         }
 
-        fetch('http://localhost:5000/addreview', {
+        fetch('https://doctors-services-server.vercel.app/addreview', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
             },
             body: JSON.stringify(addReview)
         })
