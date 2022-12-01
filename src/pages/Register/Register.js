@@ -17,35 +17,35 @@ const Register = () => {
         const password = form.password.value;
         const img = form.img.value;
         console.log(name, img, email, password)
-        createUser(email, password)
-            .then(result => {
-                const user = result.user;
-                handleUpdateUserProfile(name, img)
-                const currentUser = {
-                    email: user.email
-                }
-                fetch('https://doctors-services-server.vercel.app/jwt', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(currentUser)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data)
-                        localStorage.setItem('doctorToken', data.token)
-                        // navigate(from, { replace: true });
-                    })
-                    .catch(error => console.error(error))
-                navigate('/')
-                form.reset()
-                setError('')
-            })
-            .catch(error => {
-                setError(error)
-                console.error(error.message)
-            })
+        // createUser(email, password)
+        //     .then(result => {
+        //         const user = result.user;
+        //         handleUpdateUserProfile(name, img)
+        //         const currentUser = {
+        //             email: user.email
+        //         }
+        //         // fetch('https://doctors-services-server.vercel.app/jwt', {
+        //         //     method: 'POST',
+        //         //     headers: {
+        //         //         'content-type': 'application/json'
+        //         //     },
+        //         //     body: JSON.stringify(currentUser)
+        //         // })
+        //         //     .then(res => res.json())
+        //         //     .then(data => {
+        //         //         console.log(data)
+        //         //         localStorage.setItem('doctorToken', data.token)
+        //         //         // navigate(from, { replace: true });
+        //         //     })
+        //         //     .catch(error => console.error(error))
+        //         navigate('/')
+        //         form.reset()
+        //         setError('')
+        //     })
+        //     .catch(error => {
+        //         setError(error)
+        //         console.error(error.message)
+        //     })
     }
     const googleBtn = () => {
         googleSignIn()
@@ -113,6 +113,8 @@ const Register = () => {
                     <div><input type="email" name='email' placeholder="Type email" className="input input-bordered input-accent w-3/4 mb-4  " required /></div>
                     <div> <input type="password" name='password' placeholder="Type password" className="input input-bordered input-accent w-3/4 mb-4" required /></div>
                     <div> <input type="text" name='img' placeholder="Image URL" className="input input-bordered input-accent w-3/4 mb-4 " required /></div>
+
+
                     <div><input type="submit" placeholder="Type password" className="btn btn-primary px-9 " /></div>
                 </form>
 
