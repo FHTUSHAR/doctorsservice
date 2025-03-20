@@ -16,7 +16,8 @@ const AllService = () => {
             })
     }, [])
     if (loader) {
-        return <TailSpin
+        return <div className='flex justify-center min-h-[calc(100vh-240px)] items-center' width={'100%'} >
+             <TailSpin
             height="80"
             width="80"
             color="#4fa94d"
@@ -26,6 +27,7 @@ const AllService = () => {
             wrapperClass=""
             visible={true}
         />
+        </div>
     }
     return (
         <div className='mb-8'>
@@ -38,7 +40,7 @@ const AllService = () => {
             <div className='grid lg:grid-cols-3 sm:grid-cols-1 '>
 
                 {
-                    services.map(service => <Service key={service._id} service={service}></Service>)
+                    services?.map(service => <Service key={service._id} service={service}></Service>)
                 }
             </div>
         </div>

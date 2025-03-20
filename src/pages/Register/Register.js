@@ -87,16 +87,18 @@ const Register = () => {
     }
     if (!error) {
         if (loading) {
-            return <TailSpin
-                height="80"
-                width="80"
-                color="#4fa94d"
-                ariaLabel="tail-spin-loading"
-                radius="1"
-                wrapperStyle={{}}
-                wrapperClass=""
-                visible={true}
-            />
+            return <div className='flex justify-center min-h-[calc(100vh-240px)] items-center' width={'100%'} >
+                         <TailSpin
+                        height="80"
+                        width="80"
+                        color="#4fa94d"
+                        ariaLabel="tail-spin-loading"
+                        radius="1"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                    />
+                    </div>
         }
     }
 

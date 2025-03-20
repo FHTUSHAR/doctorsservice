@@ -30,16 +30,16 @@ const Update = () => {
         event.target.reset()
     }
     return (
-        <div className='flex justify-center w-1/2'>
+        <div className='flex justify-center  w-full h-[calc(100vh-230px)]'>
             <div className='grid grid-cols-1 lg:grid-cols-1 gap-5 mx-auto mb-9 w-full '>
                 <form onSubmit={handleUpdate} className=' ml-44'>
-                    <div>
-                        <p className='text-xl font-bold'>Title</p>
+                    <div className='mb-3 w-1/2'>
+                        <p className='text-md font-normal'>Title</p>
                         <input type="text" placeholder="First name" defaultValue={update.title} readOnly className="input input-bordered input-primary w-full " />
                     </div>
                     <div>
-                        <p className='text-xl font-bold'>Add New Review</p>
-                        <input type="text" name='review' placeholder="review" defaultValue={update.review} className="input input-bordered input-primary mb-9 px-32 py-16 " />
+                        <p className='text-md  font-normal'>Add New Review</p>
+                        <input type="text"  name='review' placeholder="review" defaultValue={update.review} className="input input-bordered input-primary mb-9  py-2 w-1/4 h-32" />
                     </div>
                     <div>
                         <input type="submit" placeholder="submit" className="btn btn-primary px-9 " />

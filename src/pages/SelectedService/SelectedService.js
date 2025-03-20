@@ -24,7 +24,7 @@ const SelectedService = () => {
                         <p>{details}</p>
 
                         <div className='grid grid-cols-2'>
-                            <p className='font-bold'> Rating :{rating}stars</p>
+                            <p className='font-bold'> Rating :{rating}</p>
                             <p className='font-bold'>Price :${price}</p>
                         </div>
 

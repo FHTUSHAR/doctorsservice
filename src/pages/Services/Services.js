@@ -30,7 +30,7 @@ const Services = () => {
                     }
                 </div>
             </div>
-            <div className='flex justify-center mb-7'>
+            <div className='flex justify-center mb-7 mt-4'>
                 <button onClick={() => navigate('/services')} className='btn btn-primary px-8 '>See All</button>
             </div>
 

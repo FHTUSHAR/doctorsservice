@@ -13,7 +13,7 @@ const Service = ({ service }) => {
                 <figure className="px-10 pt-10">
                     <PhotoProvider>
                         <PhotoView src={img}>
-                            <img src={img} alt="" />
+                            <img src={img} alt="" className='h-[240px]' />
                         </PhotoView>
                     </PhotoProvider>
 
@@ -22,8 +22,8 @@ const Service = ({ service }) => {
                     <h2 className="card-title text-start">{title}</h2>
                     <p className='text-start'>{details.split('', 100)}</p>
 
-                    <div className='grid grid-cols-2'>
-                        <p className='font-bold'> Rating :{rating}stars</p>
+                    <div className='grid grid-cols-2 gap-9' >
+                        <p className='font-bold'> Rating :{rating}</p>
                         <p className='font-bold'>Price :${price}</p>
                     </div>
                     <div className="card-actions">

@@ -30,9 +30,9 @@ const Header = () => {
                             </Link>
 
                         </li>
-                        <li>
+                        {/* <li>
                             <Link to={'/blog'}>Blog</Link>
-                        </li>
+                        </li> */}
                         {
                             user?.uid ?
                                 <>
@@ -58,9 +58,9 @@ const Header = () => {
                         </Link>
 
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to={'/blog'}>Blog</Link>
-                    </li>
+                    </li> */}
                     {
                         user?.uid ?
                             <>
